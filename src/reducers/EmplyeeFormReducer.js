@@ -1,6 +1,6 @@
 import {
   EMPLOYEE_UPDATE,
-  EMPLOYEE_FIELDS_RESET
+  EMPLOYEE_FIELDS_RESET,
 } from '../actions/types';
 
 const INITIAL_STATE = {
