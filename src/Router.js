@@ -9,7 +9,15 @@ const RouterComponent = () => {
     <Router>
       <Stack key="root">
         <Scene key="login" component={LoginForm} title="Please Login" />
-        <Scene key="employeeList" component={EmployeeList} title="Employees" />
+
+        <Scene
+          initial
+          onRight={() => console.log('right')}
+          rightTitle="Add" 
+          key="employeeList" 
+          component={EmployeeList} 
+          title="Employees" 
+        />
       </Stack>
     </Router>
   )
