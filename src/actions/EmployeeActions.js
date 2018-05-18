@@ -30,9 +30,10 @@ export const employeeCreate = ({ name, phone, shift }) => {
 
 export const employeesFetch = () => {
   const { currentUser } = firebase.auth();
+  // firebase.database().ref(`/users/${currentUser.uid}/employees`)
 
   const uid = '8DcnfhqxH3TUf1M6N4OMqNIYLB72'
-
+  
   return (dispatch) => {
     firebase.database().ref(`/users/${uid}/employees`)
       .on('value', snapshot => {
@@ -43,6 +44,7 @@ export const employeesFetch = () => {
 
 export const employeeSave = ({ name, phone, shift, uid }) => {
   const { createUser } = firebase.auth();
+  // firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
 
   const uidd = '8DcnfhqxH3TUf1M6N4OMqNIYLB72'
 
@@ -51,6 +53,22 @@ export const employeeSave = ({ name, phone, shift, uid }) => {
       .set({ name, phone, shift })
       .then(() => {
         dispatch({ type: EMPLOYEE_SAVE_SUCCESS })
+        Actions.employeeList({ type: 'reset' })
+      })
+  }
+};
+
+
+export const employeeDelete = ({ uid }) => {
+  const { currentUser } = firebase.auth();
+  // firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+
+  const uidd = '8DcnfhqxH3TUf1M6N4OMqNIYLB72'
+
+  return (disatch) => {
+    firebase.database().ref(`/users/${uidd}/employees/${uid}`)
+      .remove()
+      .then(() => {
         Actions.employeeList({ type: 'reset' })
       })
   }
